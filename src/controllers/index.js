@@ -1,6 +1,6 @@
 module.exports = function IndexController(router) {
-  router.use('/', function handleGet(req, res) {
-    
+  router.get('/', function handleIndex(req, res) {
+    res.render('index.html');
   });
 
   return ['/', router];

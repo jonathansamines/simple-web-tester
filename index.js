@@ -1,6 +1,7 @@
 const dotenv = require('dotenv');
 const express = require('express');
 const enverify = require('require-environment-variables');
+const nunjucks = require('nunjucks');
 const app = express();
 
 // load environment variables
@@ -18,11 +19,20 @@ enverify([
 const router = require('src/router');
 
 // configure middlewares
+// public dir
 app.use(express.static(process.env.SERVICE_PUBLIC_DIR));
+
+// routes
 router.routes().forEach(function mapRouteController(controller) {
   /* eslint-disable new-cap */
   const route = controller(express.Router());
   app.use(route[0], route[1]);
+});
+
+// view engine
+nunjucks.configure('src/views', {
+  autoscape: true,
+  express: app
 });
 
 // handle global errors
