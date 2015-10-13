@@ -20,7 +20,7 @@ const router = require('src/router');
 
 // configure middlewares
 // public dir
-app.use(express.static(process.env.SERVICE_PUBLIC_DIR));
+app.use('/public', express.static(__dirname + process.env.SERVICE_PUBLIC_DIR));
 
 // routes
 router.routes().forEach(function mapRouteController(controller) {
