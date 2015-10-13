@@ -1,0 +1,7 @@
+{
+  "name": "simple-web-tester",
+  "version": "1.0.0",
+  "dependencies": {
+    "foundation": "~5.5.3"
+  }
+}
