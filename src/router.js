@@ -10,7 +10,10 @@ module.exports = {
   routes: function getRoutes() {
     return Object
       .keys(controllers)
-      .map(controller => controllers[controller])
+      .map(controller => {
+        console.log(controllers);
+        return controllers[controller];
+      })
       .filter(controller => typeof controller === 'function');
   }
 };

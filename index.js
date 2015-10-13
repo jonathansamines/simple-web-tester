@@ -11,14 +11,19 @@ enverify([
   'NODE_ENV',
   'NODE_PATH',
   'SERVICE_SERVER_PORT',
-  'SERVICE_PUBLIC_DIR'
+  'SERVICE_PUBLIC_DIR',
+  'SERVICE_CONTROLLER_DIR'
 ]);
 
 const router = require('src/router');
 
 // configure middlewares
 app.use(express.static(process.env.SERVICE_PUBLIC_DIR));
-router.routes().forEach(app.use);
+router.routes().forEach(function mapRouteController(controller) {
+  /* eslint-disable new-cap */
+  const route = controller(express.Router());
+  app.use(route[0], route[1]);
+});
 
 // handle global errors
 app.use(function handleGlobalErrors(req, res, error, next) {
