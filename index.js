@@ -1,14 +1,24 @@
 const dotenv = require('dotenv');
 const express = require('express');
+const enverify = require('require-environment-variables');
 const app = express();
 
 // load environment variables
 dotenv.load();
+
+// verify if all environment variables needed are present
+enverify([
+  'NODE_ENV',
+  'NODE_PATH',
+  'SERVICE_SERVER_PORT',
+  'SERVICE_PUBLIC_DIR'
+]);
+
 const router = require('src/router');
 
 // configure middlewares
 app.use(express.static(process.env.SERVICE_PUBLIC_DIR));
-app.use(router.routes());
+router.routes().forEach(app.use);
 
 // handle global errors
 app.use(function handleGlobalErrors(req, res, error, next) {

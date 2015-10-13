@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha test",
     "start": "node index.js",
-    "server": "nodemon index.js"
+    "server": "NODE_PATH=./ nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,8 @@
   "dependencies": {
     "dotenv": "^1.2.0",
     "express": "^4.13.3",
-    "require-dir": "^0.3.0"
+    "require-dir": "^0.3.0",
+    "require-environment-variables": "^1.1.1"
   },
   "devDependencies": {
     "babel-eslint": "^4.1.3",
