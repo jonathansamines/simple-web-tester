@@ -24,10 +24,13 @@
 html body {
 
   .application-wrapper {
-    padding-top: 20px;
+    background-color: $white;
+    padding-top: 15px;
+
     @include grid-row;
 
     .application-content {
+      padding: 5px 20px;
       @include grid-column($columns: 12);
     }
   }

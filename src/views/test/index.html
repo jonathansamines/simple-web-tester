@@ -1,0 +1,35 @@
+{% extends "templates/layout.html" %}
+
+{% block body %}
+  <section class="test-wrapper">
+    <header>
+      <h2>Nombre del Test</h2>
+      <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic dolores optio ducimus, non molestias quas illum rem nemo error doloribus pariatur quidem repellendus, laboriosam delectus itaque laudantium, tenetur incidunt sint!</p>
+
+      <p class="summary">
+        <strong>Cantidad de preguntas: </strong> ##
+        <br>
+
+        <strong>Valor: </strong> ##.##
+        <br>
+
+        <strong>Creado por: </strong> Jonathan Samines
+        <br>
+
+        <strong>Valido hasta: </strong> 10/20/2015
+      </p>
+
+      <p class="disclaimer">
+        Una vez iniciado el test, no se podrá parar el proceso.
+        El salirse durante el test se considera "abandono" y por lo tanto se calficará lo que se tenga al momento de la salida.
+        Cada pregunta tiene un solo intento, y una vez seleccionada la respuesta no será posible cambiarla, por lo que tenga cuidad al elegir una respuesta.
+      </p>
+
+      <label class="text-right">Acepto que he leido lo arriba indicado y estoy de acuerdo con las reglas establecidas.
+        <input type="checkbox">
+      </label>
+
+      <button class="button small success radius">Iniciar Test</button>
+    </header>
+  </section>
+{% endblock %}

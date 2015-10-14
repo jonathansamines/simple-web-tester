@@ -1,0 +1,47 @@
+{% extends "templates/layout.html" %}
+
+{% block body %}
+  <section class="question-wrapper">
+    <form action="/test/:id/questions/:questionId" method="POST">
+      <h2>¿Question title?</h2>
+
+      <p class="question-detail">
+        <strong>Question explanation</strong>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, in culpa. Reiciendis et magni quibusdam voluptas excepturi, veritatis. Ex iste numquam eveniet eaque, illo excepturi. Magnam, modi sunt fugit aspernatur!
+      </p>
+
+      <div class="posible-answers">
+        <label>
+          <input type="checkbox" name="answer"> Description of posible answer
+        </label>
+
+        <label>
+          <input type="checkbox" name="answer"> Description of posible answer
+        </label>
+
+        <label>
+          <input type="checkbox" name="answer"> Description of posible answer
+        </label>
+      </div>
+
+      <div class="row">
+        <div class="large-12 columns text-right">
+          <button class="button small success round">Enviar Respuesta</button>
+        </div>
+      </div>
+    </form>
+
+
+    <nav class="test-question-navigation pagination-centered">
+      <ul class="pagination">
+        <li class="unavailable"><a href="">1</a></li>
+        <li class="unavailable"><a href="">2</a></li>
+        <li class="unavailable"><a href="">3</a></li>
+        <li class="unavailable"><a href="">4</a></li>
+        <li class="current">
+          <a href="/test/:id/question/:id">5</a>
+        </li>
+      </ul>
+    </nav>
+  </section>
+{% endblock %}

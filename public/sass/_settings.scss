@@ -71,18 +71,18 @@ $black       : #000000;
 
 // We use these as default colors throughout
 $primary-color: #1c73a5;
-$secondary-color: #e7e7e7;
-$alert-color: #f04124;
-$success-color: #43AC6A;
-$warning-color: #f08a24;
-$info-color: #2882b5;
+$secondary-color: #d3e0e9;
+$alert-color: #d9534f;
+$success-color: #7eb530;
+$warning-color: #ffcb1f;
+$info-color: #2a88bd;
 
 $light-sky: #f5f8fa;
 $dark-sky: #d3e0e9;
 
 // We use these to control various global styles
 $body-bg: $light-sky;
-$body-font-color: $jet;
+$body-font-color: #1e3948;
 // $body-font-family: $font-family-sans-serif;
 // $body-font-weight: $font-weight-normal;
 // $body-font-style: normal;
@@ -545,35 +545,35 @@ $body-font-color: $jet;
 // 20. Pagination
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-pagination-classes: $include-html-classes;
+$include-pagination-classes: $include-html-classes;
 
 // We use these to control the pagination container
-// $pagination-height: rem-calc(24);
-// $pagination-margin: rem-calc(-5);
+$pagination-height: rem-calc(24);
+$pagination-margin: rem-calc(-5);
 
 // We use these to set the list-item properties
 // $pagination-li-float: $default-float;
-// $pagination-li-height: rem-calc(24);
-// $pagination-li-font-color: $jet;
-// $pagination-li-font-size: rem-calc(14);
-// $pagination-li-margin: rem-calc(5);
+$pagination-li-height: rem-calc(24);
+$pagination-li-font-color: $jet;
+$pagination-li-font-size: rem-calc(14);
+$pagination-li-margin: rem-calc(5);
 
 // We use these for the pagination anchor links
-// $pagination-link-pad: rem-calc(1 10 1);
-// $pagination-link-font-color: $aluminum;
-// $pagination-link-active-bg: scale-color($white, $lightness: -10%);
+$pagination-link-pad: rem-calc(5 14);
+$pagination-link-font-color: $steel;
+$pagination-link-active-bg: scale-color($white, $lightness: -10%);
 
 // We use these for disabled anchor links
-// $pagination-link-unavailable-cursor: default;
-// $pagination-link-unavailable-font-color: $aluminum;
-// $pagination-link-unavailable-bg-active: transparent;
+$pagination-link-unavailable-cursor: default;
+$pagination-link-unavailable-font-color: $steel;
+$pagination-link-unavailable-bg-active: transparent;
 
 // We use these for currently selected anchor links
-// $pagination-link-current-background: $primary-color;
-// $pagination-link-current-font-color: $white;
+$pagination-link-current-background: $dark-sky;
+$pagination-link-current-font-color: $steel;
 // $pagination-link-current-font-weight: $font-weight-bold;
-// $pagination-link-current-cursor: default;
-// $pagination-link-current-active-bg: $primary-color;
+$pagination-link-current-cursor: default;
+$pagination-link-current-active-bg: $dark-sky;
 
 // 21. Panels
 // - - - - - - - - - - - - - - - - - - - - - - - - -
