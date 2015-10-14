@@ -5,6 +5,18 @@
   <title>Webtester - Calculo II</title>
 </head>
 <body>
+  {% include "templates/header.html" %}
 
+  <section class="row">
+    <section class="application-content">
+      {% block body %}
+      {% endblock %}
+    </section>
+
+    {% include "templates/footer.html" %}
+  </section>
+
+  <!--  public assets include -->
+  <link rel="stylesheet" href="public/css/application.css" media="screen">
 </body>
 </html>
