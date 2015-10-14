@@ -21,6 +21,16 @@
 @import 'foundation/components/type';
 @import 'foundation/components/visibility';
 
+@mixin test-component {
+  .question-wrapper {
+    .posible-answer label {
+      font-size: 1rem;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+  }
+}
+
 html body {
 
   .application-wrapper {
@@ -32,6 +42,8 @@ html body {
     .application-content {
       padding: 5px 20px;
       @include grid-column($columns: 12);
+
+      @include test-component;
     }
   }
 }
