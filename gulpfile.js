@@ -18,7 +18,10 @@ gulp.task('compile-sass', function compileSass() {
     .src(targets.sass.src)
     .pipe(sourcemaps.init())
     .pipe(sass({
-      includePaths: ['./public/components/foundation/scss']
+      includePaths: [
+        './public/components/foundation/scss',
+        './public/components/icheck/skins'
+      ]
     }))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(targets.sass.dest))
