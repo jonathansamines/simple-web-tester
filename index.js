@@ -36,7 +36,7 @@ nunjucks.configure('src/views', {
 });
 
 // handle global errors
-app.use(function handleGlobalErrors(req, res, error, next) {
+app.use(function handleGlobalErrors(error, req, res, next) {
   console.error(error);
   next();
 });

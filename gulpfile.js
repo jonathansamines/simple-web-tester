@@ -9,7 +9,7 @@ const targets = {
     dest: './public/css'
   },
   views: {
-    src: './src/views/*.html'
+    src: './src/views/**/*.html'
   }
 };
 
