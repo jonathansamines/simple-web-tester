@@ -36,9 +36,10 @@ nunjucks.configure('src/views', {
 });
 
 // handle global errors
+/* eslint-disable no-unused-vars */
 app.use(function handleGlobalErrors(error, req, res, next) {
   console.error(error);
-  next();
+  res.redirect('/error');
 });
 
 // start server

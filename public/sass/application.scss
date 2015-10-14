@@ -20,3 +20,15 @@
 @import 'foundation/components/tooltips';
 @import 'foundation/components/type';
 @import 'foundation/components/visibility';
+
+html body {
+
+  .application-wrapper {
+    padding-top: 20px;
+    @include grid-row;
+
+    .application-content {
+      @include grid-column($columns: 12);
+    }
+  }
+}
