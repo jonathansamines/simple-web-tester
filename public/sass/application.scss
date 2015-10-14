@@ -43,6 +43,10 @@ html body {
       padding: 5px 20px;
       @include grid-column($columns: 12);
 
+      .section-wrapper {
+        padding: 5px 10px;
+      }
+
       @include test-component;
     }
   }
