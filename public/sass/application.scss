@@ -45,6 +45,11 @@ html body {
 
       .section-wrapper {
         padding: 5px 10px;
+
+        h2 {
+          border-left: 2px solid $secondary-color;
+          padding-left: 10px;
+        }
       }
 
       @include test-component;
