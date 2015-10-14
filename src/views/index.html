@@ -2,14 +2,36 @@
 
 {% block body %}
   <section class="section-wrapper test-list">
-    <article class="test-item">
+    <h2>My assigned tests</h2>
+
+    <article class="test-item clearfix">
       <h3>Quiz name</h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia blanditiis expedita tempora animi, optio at natus consequuntur cupiditate possimus! Ducimus accusamus illum fugiat dicta praesentium, sequi facere delectus dignissimos animi.</p>
-      <strong>Created by: Jonathan Samines</strong>
 
-      <div class="test-action">
+      <span class="test-tags left">
+        <strong>#</strong>
+        <strong class="label secondary round">Jonathan Samines</strong>
+        <strong class="label secondary round">10/20/2014</strong>
+      </span>
+
+      <span class="test-action right">
         <a href="/test/2" class="button success tiny radius">Start test</a>
-      </div>
+      </span>
+    </article>
+
+    <article class="test-item clearfix">
+      <h3>Quiz name</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia blanditiis expedita tempora animi, optio at natus consequuntur cupiditate possimus! Ducimus accusamus illum fugiat dicta praesentium, sequi facere delectus dignissimos animi.</p>
+
+      <span class="test-tags left">
+        <strong>#</strong>
+        <strong class="label secondary round">Jonathan Samines</strong>
+        <strong class="label secondary round">10/20/2014</strong>
+      </span>
+
+      <span class="test-action right">
+        <a href="/test/2" class="button success tiny radius">Start test</a>
+      </span>
     </article>
   </section>
 {% endblock %}
