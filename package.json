@@ -7,7 +7,7 @@
     "test": "mocha test",
     "start": "node index.js",
     "build": "gulp build",
-    "server": "NODE_PATH=./ nodemon --watch src/views/**/**.html index.js"
+    "server": "NODE_PATH=./ nodemon index.js"
   },
   "repository": {
     "type": "git",

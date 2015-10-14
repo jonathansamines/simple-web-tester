@@ -1,1 +1,14 @@
 {% extends "templates/layout.html" %}
+
+{% block body %}
+  <section class="test-list">
+    <article class="test-item">
+      <h3>Quiz name</h3>
+      <strong>Created by: Jonathan Samines</strong>
+
+      <div class="test-action">
+        <a href="/tests/{{id}}" class="button success tiny radius">Start test</a>
+      </div>
+    </article>
+  </section>
+{% endblock %}
