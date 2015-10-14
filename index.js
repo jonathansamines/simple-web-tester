@@ -44,5 +44,5 @@ app.use(function handleGlobalErrors(req, res, error, next) {
 // start server
 const server = app.listen(process.env.SERVICE_SERVER_PORT, function handleServerInit() {
   const info = server.address();
-  console.log(`The server started at : ${info.address}:${info.port}`);
+  console.log(`The server started at : http://localhost:${info.port}`);
 });
