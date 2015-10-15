@@ -30,6 +30,7 @@ This application works as a simple "tester" application in which all students ca
   * firstName
   * lastName
   * code
+  * password
 
  - Role
   * roleId
@@ -40,14 +41,12 @@ This application works as a simple "tester" application in which all students ca
   * testName
   * intentsByStudent
   * canRetry
-  * isTimeLimited
-  * timeLimit
 
  - Question
   * questionId
   * testId
   * description
-  * points
+  * value
 
  - Answer
   * answerId
@@ -58,7 +57,7 @@ This application works as a simple "tester" application in which all students ca
 
  - TestIntent
   * testIntentId
-  * studentId
+  * userId
   * testId
   * startedDate
   * endedDate
