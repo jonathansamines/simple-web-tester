@@ -2,6 +2,11 @@ const dotenv = require('dotenv');
 const express = require('express');
 const enverify = require('require-environment-variables');
 const nunjucks = require('nunjucks');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const passport = require('passport');
+const local = require('src/services/authentication/strategy');
 const app = express();
 
 // load environment variables
@@ -34,6 +39,15 @@ nunjucks.configure('src/views', {
   autoscape: true,
   express: app
 });
+
+// session
+app.use(cookieParser());
+app.use(bodyParser());
+app.use(session({ secret: 'TESTER_UMG_KEY' }));
+
+passport.use(local);
+app.use(passport.initialize());
+app.use(passport.session());
 
 // handle global errors
 /* eslint-disable no-unused-vars */
