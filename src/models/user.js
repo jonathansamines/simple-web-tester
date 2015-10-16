@@ -15,39 +15,38 @@ const UserSchema = new Schema({
   },
   email: {
     type: String,
-    required: true
+    required: [true, 'El correo electrónico es un campo obligatorio.']
   },
   username: {
     type: String,
-    required: true
+    required: [true, 'Un nombre de usuario es requerido.']
   },
   firstName: {
     type: String,
     min: 4,
     max: 20,
     trim: true,
-    required: true
+    required: [true, 'Su primer nombre es obligario']
   },
   lastName: {
     type: String,
     minLength: 4,
     maxLength: 20,
-    trim: true,
-    required: true
+    trim: true
   },
   carnet: {
     type: String,
     minLength: 10,
     maxLength: 10,
     trim: true,
-    required: true,
+    required: [true, 'Su número de carné de estudiante es obligatorio.'],
     index: {
       unique: true
     }
   },
   password: {
     type: String,
-    required: true
+    required: [true, 'Una contraseña segura es obligatoria.']
   },
   role: {
     type: Schema.Types.ObjectId,

@@ -1,34 +1,99 @@
 {% extends "templates/layout.html" %}
+{% import "macros/input.html" as forms %}
 
 {% block body %}
   <section class="section-wrapper register-wrapper">
     <form action="/register" method="POST">
       <h4>Registro de Usuario</h4>
-      <div class="row">
-        <div class="large-6 columns">
-          <label>Correo de Universidad Mariano Gálvez
-            <input type="text" name="email" placeholder="Correo de estudiante. ej usuario@miumg.edu.gt" class="radius" autocomplete="off" autofocus>
-          </label>
-        </div>
 
-        <div class="large-6 columns">
-          <label>Carné de estudiante
-            <input type="text" name="carne" placeholder="Carnét de estudiante (####-##-####)" class="radius">
-          </label>
+      <div class="row">
+        <div class="large-12 columns">
+          {{ forms.input(
+            name='username',
+            type='text',
+            label='Nombre de usuario',
+            placeholder='Nombre de usuario',
+            validation=validations.username,
+            value=model.username,
+            required=true
+          )}}
         </div>
       </div>
 
       <div class="row">
         <div class="large-6 columns">
-          <label>Contraseña
-            <input type="password" name="password" placeholder="Contraseña segura" class="radius">
-          </label>
+          {{ forms.input(
+            name='firstName',
+            type='text',
+            label='Nombre completo',
+            placeholder='Nombre completo',
+            validation=validations.firstName,
+            value=model.firstName,
+            required=true
+          )}}
         </div>
 
         <div class="large-6 columns">
-          <label>Repetir Contraseña
-            <input type="password" name="password_repeat" placeholder="Repetir contraseña" class="radius">
-          </label>
+          {{ forms.input(
+            name='lastName',
+            type='text',
+            label='Apellidos',
+            placeholder='Apellidos',
+            validation=validations.lastName,
+            value=model.lastName
+          )}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+          {{ forms.input(
+            name='email',
+            type='text',
+            label='Correo de Universidad Mario Gálvez',
+            placeholder='Correo de estudiante. ej usuario@miumg.edu.gt',
+            validation=validations.email,
+            value=model.email,
+            required=true
+          )}}
+        </div>
+
+        <div class="large-6 columns">
+          {{ forms.input(
+            name='carnet',
+            type='text',
+            label='Carné de estudiante',
+            placeholder='Carnét de estudiante (####-##-####)',
+            validation=validations.carnet,
+            value=model.carnet,
+            required=true
+          )}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+          {{ forms.input(
+            name='password',
+            type='password',
+            label='Contraseña',
+            placeholder='Contraseña segura',
+            validation=validations.password,
+            value=model.password,
+            required=true
+          )}}
+        </div>
+
+        <div class="large-6 columns">
+          {{ forms.input(
+            name='repeat_password',
+            type='password',
+            label='Repetir Contraseña',
+            placeholder='Repetir contraseña',
+            validation=validations.repeat_password,
+            value=model.repeat_password,
+            required=true
+          )}}
         </div>
       </div>
 
@@ -39,6 +104,10 @@
           </p>
         </div>
       </div>
+
+      {% if message %}
+        <p data-alert class="alert-box alert radius">{{message}}</p>
+      {% endif %}
 
       <div class="row">
         <div class="large-12 columns">
