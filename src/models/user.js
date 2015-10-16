@@ -58,7 +58,7 @@ const UserSchema = new Schema({
     validate: {
       validator: function validatePasswordCoincidence(value) {
         const areEquals = value === this.repeat_password;
-        // this.repeat_password = null;
+        this.repeat_password = null;
 
         return areEquals;
       },
@@ -68,6 +68,9 @@ const UserSchema = new Schema({
   role: {
     type: Schema.Types.ObjectId,
     ref: 'Role'
+  },
+  repeat_password: {
+    type: String
   }
 });
 
@@ -104,14 +107,17 @@ UserSchema.pre('save', function computePassword(next) {
 /**
  * Utility method which allows us to compare an encrypted password
  * @param  {String}   candidatePassword Encrypted password
- * @param  {Function} cb                Called when the process has finished
  */
-UserSchema.methods.authenticate = function comparePassword(candidatePassword, cb) {
+UserSchema.methods.authenticate = function comparePassword(candidatePassword) {
   const _this = this;
-  bcrypt.compare(candidatePassword, this.password, function compare(err, isMatch) {
-    if (err) return cb(err);
-    if (!isMatch) return (new Error('Incorrect password.'));
-    cb(null, _this);
+
+  return new Promise(function createPromise(reject, resolve) {
+    bcrypt.compare(candidatePassword, _this.password, function compare(err, isMatch) {
+      if (err) return reject(err);
+      if (!isMatch) return resolve(null);
+
+      resolve(null, _this);
+    });
   });
 };
 

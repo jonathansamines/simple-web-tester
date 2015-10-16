@@ -6,9 +6,11 @@ function validateCredentials(username, password, done) {
   return service
     .authenticateUser({ username, password })
     .then(function sendAuthenticationResult(user) {
+      if (user === null) return done(null, false);
+
       return done(null, user);
     })
-    .catch(done);
+    .then(null, done);
 }
 
 module.exports = new LocalStrategy(validateCredentials);

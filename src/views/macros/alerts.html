@@ -1,0 +1,5 @@
+{% macro alertbox(message, type='secondary')%}
+  {% if message %}
+    <p class="alert-box {{type}} radius">{{message}}</p>
+  {% endif %}
+{% endmacro %}

@@ -1,4 +1,5 @@
 {% extends "templates/layout.html" %}
+{% import "macros/alerts.html" as components %}
 
 {% block body %}
   <section class="section-wrapper login-wrapper">
@@ -28,13 +29,12 @@
         </div>
       </div>
 
-      {% if message %}
-        <div class="row">
-          <div class="large-12 columns">
-            <p class="alert-box alert radius">{{message}}</p>
-          </div>
+      <div class="row">
+        <div class="large-12 columns">
+          {{ components.alertbox(message.message, message.type) }}
+          {{ components.alertbox(loginError[0], 'alert') }}
         </div>
-      {% endif %}
+      </div>
 
       <div class="row">
         <div class="large-12 columns">

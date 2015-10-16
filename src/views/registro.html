@@ -1,5 +1,6 @@
 {% extends "templates/layout.html" %}
 {% import "macros/input.html" as forms %}
+{% import "macros/alerts.html" as components %}
 
 {% block body %}
   <section class="section-wrapper register-wrapper">
@@ -105,9 +106,7 @@
         </div>
       </div>
 
-      {% if message %}
-        <p data-alert class="alert-box alert radius">{{message}}</p>
-      {% endif %}
+      {{ components.alertbox(message, 'alert') }}
 
       <div class="row">
         <div class="large-12 columns">

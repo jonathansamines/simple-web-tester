@@ -11,6 +11,7 @@ module.exports = function IndexController(router) {
   };
 
   router.get('/', authorizer, function handleIndex(req, res) {
+    application.loginSuccess = req.flash('success');
     res.render('index.html', application);
   });
 

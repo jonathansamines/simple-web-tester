@@ -18,9 +18,11 @@ UserService.prototype.getUserById = function getUserById(id) {
  */
 UserService.prototype.authenticateUser = function authenticateUser(user) {
   return UserModel
-    .findOne(user.userId)
+    .findOne({ username: user.username })
     .exec()
     .then(function validatePassword(userObject) {
+      if (userObject === null) return null;
+
       return userObject.authenticate(user.password);
     })
     .then(function validatePasswordMatch(model) {

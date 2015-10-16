@@ -1,7 +1,10 @@
 {% extends "templates/layout.html" %}
+{% import "macros/alerts.html" as components %}
 
 {% block body %}
   <section class="section-wrapper test-list">
+    {{ components.alertbox(loginSuccess[0], 'success') }}
+
     <h2>My assigned tests</h2>
 
     <article class="test-item clearfix">
