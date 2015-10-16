@@ -22,7 +22,7 @@ module.exports = {
       .then(function returnUser(user) {
         done(null, user);
       })
-      .catch(function returnError(error) {
+      .then(null, function returnError(error) {
         done(error, null);
       });
   }
