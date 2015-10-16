@@ -3,22 +3,28 @@ const UserModel = require('src/models/user');
 function UserService() {}
 
 /**
+ * Get a given user full model given a userId
+ * @param  {Number} id UserId
+ * @return {Promise}   Promise which will be resolved when the user has retrieved
+ */
+UserService.prototype.getUserById = function getUserById(id) {
+  return UserModel.findOne(id).exec();
+};
+
+/**
  * Authenticates an user against the user registry
  * @param  {Object} user Basic user object, which contains credentials information
  * @return {Promise}     Promise as result of the comparison
  */
 UserService.prototype.authenticateUser = function authenticateUser(user) {
-  const model = new UserModel(user);
-
-  return model
+  return UserModel
     .findOne(user.userId)
+    .exec()
     .then(function validatePassword(userObject) {
       return userObject.authenticate(user.password);
     })
-    .then(function validatePasswordMatch(passwordMatch) {
-      if (passwordMatch) return model;
-
-      throw new Error('The user or password is incorrect.');
+    .then(function validatePasswordMatch(model) {
+      return model;
     });
 };
 

@@ -91,9 +91,11 @@ UserSchema.pre('save', function computePassword(next) {
  * @param  {Function} cb                Called when the process has finished
  */
 UserSchema.methods.authenticate = function comparePassword(candidatePassword, cb) {
+  const _this = this;
   bcrypt.compare(candidatePassword, this.password, function compare(err, isMatch) {
     if (err) return cb(err);
-    cb(null, isMatch);
+    if (!isMatch) return (new Error('Incorrect password.'));
+    cb(null, _this);
   });
 };
 

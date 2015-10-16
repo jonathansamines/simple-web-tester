@@ -2,11 +2,12 @@ const dotenv = require('dotenv');
 const express = require('express');
 const enverify = require('require-environment-variables');
 const nunjucks = require('nunjucks');
-const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
 const local = require('src/services/authentication/strategy');
+const serializer = require('src/services/authentication/serializer');
+const flash = require('connect-flash');
 const app = express();
 
 // load environment variables
@@ -27,13 +28,6 @@ const router = require('src/router');
 // public dir
 app.use('/public', express.static(__dirname + process.env.SERVICE_PUBLIC_DIR));
 
-// routes
-router.routes().forEach(function mapRouteController(controller) {
-  /* eslint-disable new-cap */
-  const route = controller(express.Router());
-  app.use(route[0], route[1]);
-});
-
 // view engine
 nunjucks.configure('src/views', {
   autoscape: true,
@@ -41,18 +35,39 @@ nunjucks.configure('src/views', {
 });
 
 // session
-app.use(cookieParser());
-app.use(bodyParser());
-app.use(session({ secret: 'TESTER_UMG_KEY' }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json());
+app.use(session({
+  secret: 'TESTER_UMG_KEY',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 60000
+  }
+}));
 
 passport.use(local);
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
+
+passport.serializeUser(serializer.serialize);
+passport.deserializeUser(serializer.deserialize);
+require('src/database');
+
+// routes
+router.routes().forEach(function mapRouteController(controller) {
+  /* eslint-disable new-cap */
+  const route = controller(express.Router());
+  app.use(route[0], route[1]);
+});
 
 // handle global errors
 /* eslint-disable no-unused-vars */
 app.use(function handleGlobalErrors(error, req, res, next) {
-  console.error(error);
+  console.error(error.stack);
   res.redirect('/error');
 });
 
