@@ -8,7 +8,7 @@ module.exports = {
    * @param  {Function} done Completion callback
    */
   serialize: function serializeSession(user, done) {
-    done(null, user.userId);
+    done(null, user._id);
   },
 
   /**

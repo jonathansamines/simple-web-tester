@@ -111,12 +111,12 @@ UserSchema.pre('save', function computePassword(next) {
 UserSchema.methods.authenticate = function comparePassword(candidatePassword) {
   const _this = this;
 
-  return new Promise(function createPromise(reject, resolve) {
+  return new Promise(function createPromise(resolve, reject) {
     bcrypt.compare(candidatePassword, _this.password, function compare(err, isMatch) {
       if (err) return reject(err);
       if (!isMatch) return resolve(null);
 
-      resolve(null, _this);
+      return resolve(_this);
     });
   });
 };

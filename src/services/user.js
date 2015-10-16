@@ -24,9 +24,6 @@ UserService.prototype.authenticateUser = function authenticateUser(user) {
       if (userObject === null) return null;
 
       return userObject.authenticate(user.password);
-    })
-    .then(function validatePasswordMatch(model) {
-      return model;
     });
 };
 
