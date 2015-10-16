@@ -10,12 +10,12 @@ module.exports = function IndexController(router) {
     year: (new Date()).getFullYear()
   };
 
-  router.get('/', authorizer, function handleIndex(req, res) {
+  router.get('/', function handleIndex(req, res) {
     application.loginSuccess = req.flash('success');
     res.render('index.html', application);
   });
 
-  router.get('/home', authorizer, function handleHome(req, res) {
+  router.get('/home', function handleHome(req, res) {
     res.render('index.html', application);
   });
 

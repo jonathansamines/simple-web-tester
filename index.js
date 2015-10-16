@@ -41,8 +41,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(session({
   secret: 'TESTER_UMG_KEY',
-  resave: false,
-  saveUninitialized: false,
+  resave: true,
+  saveUninitialized: true,
   cookie: {
     maxAge: 60000
   }

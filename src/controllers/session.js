@@ -13,6 +13,7 @@ module.exports = function SessionController(router) {
   });
 
   router.get('/logout', function handleLogout(req, res) {
+    req.logout();
     res.redirect('/');
   });
 
