@@ -1,6 +1,6 @@
 {% macro input(name, label, placeholder='', value='', type='text', validation = null, required=false) %}
   <label class="{{'error' if validation else ''}}">{{'*' if required }} {{label}}
-    <input class="radius" type={{type}} name={{name}} placeholder={{placeholder}} value={{value}}>
+    <input type="{{type}}" name="{{name}}" placeholder="{{placeholder}}" value="{{value}}" class="radius">
   </label>
 
   {% if validation %}

@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const isEmail = require('email-validator');
+const validUtils = require('src/services/validators/umg-email');
 const SALT_FACTOR = 10;
 const Schema = mongoose.Schema;
 
@@ -15,7 +17,13 @@ const UserSchema = new Schema({
   },
   email: {
     type: String,
-    required: [true, 'El correo electrónico es un campo obligatorio.']
+    required: [true, 'El correo electrónico es un campo obligatorio.'],
+    validate: {
+      validator: function validateEmailAddress(value) {
+        return isEmail.validate(value) && validUtils.isValidUmgEmail(value);
+      },
+      message: 'Tu correo electrónico es inválido'
+    }
   },
   username: {
     type: String,
@@ -46,7 +54,16 @@ const UserSchema = new Schema({
   },
   password: {
     type: String,
-    required: [true, 'Una contraseña segura es obligatoria.']
+    required: [true, 'Una contraseña segura es obligatoria.'],
+    validate: {
+      validator: function validatePasswordCoincidence(value) {
+        const areEquals = value === this.repeat_password;
+        // this.repeat_password = null;
+
+        return areEquals;
+      },
+      message: 'Las contraseñas no coinciden.'
+    }
   },
   role: {
     type: Schema.Types.ObjectId,

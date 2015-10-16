@@ -30,6 +30,7 @@
     "body-parser": "^1.14.1",
     "connect-flash": "^0.1.1",
     "dotenv": "^1.2.0",
+    "email-validator": "^1.0.3",
     "express": "^4.13.3",
     "express-session": "^1.11.3",
     "moment": "^2.10.6",
