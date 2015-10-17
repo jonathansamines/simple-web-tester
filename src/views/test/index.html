@@ -1,8 +1,9 @@
 {% extends "templates/layout.html" %}
+{% import "macros/alerts.html" as components %}
 
 {% block body %}
   <section class="section-wrapper test-wrapper">
-    <header>
+    <form action="/tests/{{test._id}}" method="POST">
       <h2>{{test.title}}</h2>
       <p class="description">{{test.description}}</p>
 
@@ -17,17 +18,20 @@
         <br>
       </p>
 
-      <p class="disclaimer">
-        Una vez iniciado el test, no se podrá parar el proceso.
+      <p class="disclaimer alert-box secondary radius">
+        Una vez iniciado el test, <strong>no se podrá parar el proceso</strong>.
         El salirse durante el test se considera "abandono" y por lo tanto se calficará lo que se tenga al momento de la salida.
         Cada pregunta tiene un solo intento, y una vez seleccionada la respuesta no será posible cambiarla, por lo que tenga cuidad al elegir una respuesta.
       </p>
 
       <label class="text-right">Acepto que he leido lo arriba indicado y estoy de acuerdo con las reglas establecidas.
-        <input type="checkbox">
+        <input type="checkbox" name="acceptedRules">
       </label>
 
+      <br>
+      {{ components.alertbox(validation, 'alert') }}
+
       <button class="button small success radius">Iniciar Test</button>
-    </header>
+    </form>
   </section>
 {% endblock %}

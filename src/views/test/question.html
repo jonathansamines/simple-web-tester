@@ -2,37 +2,26 @@
 
 {% block body %}
   <section class="section-wrapper question-wrapper">
-    <form action="/test/:id/questions/:questionId" method="POST">
-      <h2>¿Question title?</h2>
+    <form action="/tests/{{test._id}}/questions/next" method="POST">
+      <h2>
+        {{question.title}}
+      </h2>
 
       <p class="question-detail">
         <strong>Question explanation</strong>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, in culpa. Reiciendis et magni quibusdam voluptas excepturi, veritatis. Ex iste numquam eveniet eaque, illo excepturi. Magnam, modi sunt fugit aspernatur!
+        {{question.description}}
       </p>
 
-      <div class="posible-answer row">
-        <div class="large-12 columns">
-          <label>
-            <input type="checkbox" name="answer"> Description of posible answer
-          </label>
+      {% for answer in question.answers %}
+        <div class="posible-answer row">
+          <div class="large-12 columns">
+            <label>
+              <input type="hidden" name="answerId" value={{answer._id}}>
+              <input type="checkbox" name="answer"> {{answer.description}}
+            </label>
+          </div>
         </div>
-      </div>
-
-      <div class="posible-answer row">
-        <div class="large-12 columns">
-          <label>
-            <input type="checkbox" name="answer"> Description of posible answer
-          </label>
-        </div>
-      </div>
-
-      <div class="posible-answer row">
-        <div class="large-12 columns">
-          <label>
-            <input type="checkbox" name="answer"> Description of posible answer
-          </label>
-        </div>
-      </div>
+      {% endfor %}
 
       <div class="row">
         <div class="large-12 columns text-right">
@@ -40,7 +29,6 @@
         </div>
       </div>
     </form>
-
 
     <nav class="test-question-navigation pagination-centered">
       <ul class="pagination">
