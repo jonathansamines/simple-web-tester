@@ -28,5 +28,9 @@ module.exports = function IndexController(router) {
     res.render('foro.html');
   });
 
+  router.get('/teoria', function handleTeoria(req, res) {
+    res.render('teoria.html');
+  });
+
   return ['/', router];
 };
