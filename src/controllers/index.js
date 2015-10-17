@@ -20,5 +20,13 @@ module.exports = function IndexController(router) {
       .then(null, console.error);
   });
 
+  router.get('/nosotros', function handleNosotros(req, res) {
+    res.render('nosotros.html');
+  });
+
+  router.get('/foro', function handleForo(req, res) {
+    res.render('foro.html');
+  });
+
   return ['/', router];
 };
