@@ -8,7 +8,7 @@ function UserService() {}
  * @return {Promise}   Promise which will be resolved when the user has retrieved
  */
 UserService.prototype.getUserById = function getUserById(id) {
-  return UserModel.findOne(id).exec();
+  return UserModel.findOne(id).populate('rol').exec();
 };
 
 /**
@@ -19,6 +19,7 @@ UserService.prototype.getUserById = function getUserById(id) {
 UserService.prototype.authenticateUser = function authenticateUser(user) {
   return UserModel
     .findOne({ username: user.username })
+    .populate('rol')
     .exec()
     .then(function validatePassword(userObject) {
       if (userObject === null) return null;

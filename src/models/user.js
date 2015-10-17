@@ -65,12 +65,16 @@ const UserSchema = new Schema({
       message: 'Las contraseñas no coinciden.'
     }
   },
-  role: {
+  rol: {
     type: Schema.Types.ObjectId,
     ref: 'Role'
   },
   repeat_password: {
     type: String
+  },
+  solvedTests: {
+    type: Schema.Types.ObjectId,
+    ref: 'TestIntent'
   }
 });
 

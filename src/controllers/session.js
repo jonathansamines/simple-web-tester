@@ -2,9 +2,11 @@ const authorizer = require('src/services/authentication');
 const anonymous = require('src/services/authentication/anonymous');
 const validationError = require('src/services/error/validator');
 const UserService = require('src/services/user');
+const RolService = require('src/services/rol');
 
 module.exports = function SessionController(router) {
   const user = new UserService();
+  const rol = new RolService();
 
   router.post('/login', authorizer);
   router.get('/login', anonymous, function handleLoginPage(req, res) {
@@ -24,15 +26,17 @@ module.exports = function SessionController(router) {
   });
 
   router.post('/register', function handleRegister(req, res) {
-    return user
-      .registerUser(req.body)
-      .then(function registerSuccess() {
-        req.flash('registered', {
-          type: 'success',
-          message: 'Tu usuario se ha registrado correctamente.'
-        });
+    return rol
+      .getStudentRol()
+      .then(function attachRol(studentRol) {
+        req.body.rol = studentRol._id;
 
-        res.redirect('/home');
+        return user.registerUser(req.body);
+      })
+      .then(function registerSuccess() {
+        req.flash('registered', 'Tu usuario se ha registrado correctamente.');
+
+        res.redirect('/login');
       })
       .then(null, function handleError(error) {
         const context = validationError(error, 'Información incompleta o con errores. Por favor verificar.');

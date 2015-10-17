@@ -10,8 +10,8 @@ const testService = new TestService();
 
 module.exports = function seedInitialData() {
   const rolCreation = Promise.all([
-    rolService.createRol({ name: 'Profesor' }),
-    rolService.createRol({ name: 'Estudiante' })
+    rolService.createRol({ name: 'Profesor', code: 'TEACHER' }),
+    rolService.createRol({ name: 'Estudiante', code: 'STUDENT' })
   ]);
 
   rolCreation

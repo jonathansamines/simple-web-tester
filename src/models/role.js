@@ -3,10 +3,21 @@ const Schema = mongoose.Schema;
 
 const RoleSchema = new Schema({
   roleId: Schema.Types.ObjectId,
-  name: String
+  code: {
+    type: String,
+    required: true
+  },
+  name: {
+    type: String,
+    required: true
+  }
 });
 
 module.exports = {
   Model: mongoose.model('Role', RoleSchema),
-  Schema: RoleSchema
+  Schema: RoleSchema,
+  Enum: {
+    STUDENT: 'STUDENT',
+    TEACHER: 'TEACHER'
+  }
 };
