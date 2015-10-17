@@ -17,9 +17,7 @@ module.exports = function IndexController(router) {
           tests: tests
         });
       })
-      .then(null, function evalError(error) {
-        console.log(error);
-      });
+      .then(null, console.error);
   });
 
   return ['/', router];
