@@ -1,11 +1,13 @@
 const authorizer = require('src/services/authentication');
+const anonymous = require('src/services/authentication/anonymous');
 const validationError = require('src/services/error/validator');
 const UserService = require('src/services/user');
-const user = new UserService();
 
 module.exports = function SessionController(router) {
+  const user = new UserService();
+
   router.post('/login', authorizer);
-  router.get('/login', function handleLoginPage(req, res) {
+  router.get('/login', anonymous, function handleLoginPage(req, res) {
     res.render('login.html', {
       registered: req.flash('registered'),
       loginError: req.flash('error')
@@ -17,7 +19,7 @@ module.exports = function SessionController(router) {
     res.redirect('/');
   });
 
-  router.get('/register', function handleRegisterPage(req, res) {
+  router.get('/register', anonymous, function handleRegisterPage(req, res) {
     res.render('registro.html');
   });
 

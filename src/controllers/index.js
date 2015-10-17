@@ -1,4 +1,4 @@
-const authorizer = require('src/services/authentication');
+const protect = require('src/services/authentication/protect');
 
 /**
  * Serves the application entry points
@@ -10,12 +10,8 @@ module.exports = function IndexController(router) {
     year: (new Date()).getFullYear()
   };
 
-  router.get('/', function handleIndex(req, res) {
+  router.get('/', protect, function handleIndex(req, res) {
     application.loginSuccess = req.flash('success');
-    res.render('index.html', application);
-  });
-
-  router.get('/home', function handleHome(req, res) {
     res.render('index.html', application);
   });
 
