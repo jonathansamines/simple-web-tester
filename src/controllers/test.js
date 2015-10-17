@@ -10,7 +10,7 @@ module.exports = function TestController(router) {
         req.session.currentTest = test;
         res.render('test/index.html', {
           test: test,
-          validation: req.flash('validation')[0]
+          validation: req.flash('validation')
         });
       })
       .then(null, console.log);
@@ -31,6 +31,7 @@ module.exports = function TestController(router) {
   router.get('/:testId/questions/next', protect, function handleQuestionReqest(req, res) {
     const lastQuestion = req.session.lastQuestion;
     res.render('test/question.html', {
+      validation: req.flash('validation-message'),
       question: req.session.currentTest.questions[lastQuestion],
       test: req.session.currentTest,
       questionIndex: lastQuestion
@@ -38,11 +39,21 @@ module.exports = function TestController(router) {
   });
 
   router.post('/:testId/questions/next', protect, function requestNextQuestion(req, res) {
-    const lastQuestion = ++req.session.lastQuestion;
+    const lastQuestion = req.session.lastQuestion;
 
     if (lastQuestion >= req.session.currentTest.questions.length) {
       return res.redirect(`/tests/${req.params.testId}/result`);
     }
+
+    // test if there is a selected answer
+    const selectedAnswer = req.body.selectedAnswer;
+    if (selectedAnswer === undefined) {
+      req.flash('validation-message', 'Seleccione una respuesta válida.');
+      return res.redirect('/tests/${req.params.testId}/questions/next');
+    }
+
+    // go to the next question
+    req.session.lastQuestion++;
 
     return res.redirect(`/tests/${req.params.testId}/questions/next`);
   });

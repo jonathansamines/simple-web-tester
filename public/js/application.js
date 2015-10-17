@@ -6,7 +6,7 @@ var tester = {
 };
 
 tester.components.checker = function initChecker() {
-  var $checkInputs = $('input:checkbox');
+  var $checkInputs = $('input:radio, input:checkbox');
   $checkInputs.iCheck({
     checkboxClass: 'icheckbox_square-blue',
     radioClass: 'iradio_square-blue',
