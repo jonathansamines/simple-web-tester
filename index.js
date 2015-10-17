@@ -54,6 +54,11 @@ passport.deserializeUser(serializer.deserialize);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+app.use(function attachSessionToLocal(req, res, next) {
+  res.locals.session = req.session;
+  res.locals.user = req.user;
+  next();
+});
 
 require('src/database');
 
