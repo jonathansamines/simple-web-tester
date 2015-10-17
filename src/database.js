@@ -7,6 +7,6 @@ mongoose.connect(connectionUri, {
   passport: process.env.DATABASE_PASSWORD
 });
 
-seeder();
+// seeder();
 
 module.exports = mongoose;

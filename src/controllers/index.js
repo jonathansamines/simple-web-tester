@@ -1,3 +1,5 @@
+const TestService = require('src/services/test');
+const testService = new TestService();
 const protect = require('src/services/authentication/protect');
 
 /**
@@ -12,7 +14,16 @@ module.exports = function IndexController(router) {
 
   router.get('/', protect, function handleIndex(req, res) {
     application.loginSuccess = req.flash('success');
-    res.render('index.html', application);
+
+    testService.getAvailableTests()
+      .then(function sendResult(tests) {
+        console.log(tests);
+        application.tests = tests;
+        res.render('index.html', application);
+      })
+      .then(null, function evalError(error) {
+        console.log(error);
+      });
   });
 
   return ['/', router];

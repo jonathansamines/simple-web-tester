@@ -5,10 +5,7 @@
   <section class="section-wrapper test-list">
     {{ components.alertbox(loginSuccess[0], 'success') }}
 
-    <h2>
-      <small class="label radius secondary">{{tests.length}}</small>
-      Mis pruebas asignadas
-    </h2>
+    <h2>Mis pruebas asignadas</h2>
 
     {% for test in tests %}
       <article class="test-item clearfix">
@@ -19,7 +16,8 @@
           <strong>#</strong>
           <strong class="label secondary round">{{test.author.fullName}}</strong>
           <strong class="label secondary round">{{test.creationDate}}</strong>
-          <strong class="label info round">{{test.value}}</strong>
+          <strong class="label secondary round">{{test.questions.length}} preguntas</strong>
+          <strong class="label info round">{{test.value}} puntos</strong>
         </span>
 
         <span class="test-action right">
