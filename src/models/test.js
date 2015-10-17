@@ -8,6 +8,9 @@ const TestSchema = new Schema({
     type: String,
     required: true
   },
+  description: {
+    type: String
+  },
   intentsNumber: Number,
   value: {
     type: Number,

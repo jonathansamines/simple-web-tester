@@ -11,6 +11,15 @@ TestService.prototype.getAvailableTests = function getAvailableTests() {
 };
 
 /**
+ * Get the complete information (including questions and possible answers)
+ * @param  {Number} testId Test identifier
+ * @return {Promise}       Search result promise
+ */
+TestService.prototype.getFullTest = function getFullTestObject(testId) {
+  return TestModel.findById(testId).exec();
+};
+
+/**
  * Create a new test, with a list of available questions
  * @param  {Object} test      Test model instance
  * @return {Promise}          Result of the creation as promise

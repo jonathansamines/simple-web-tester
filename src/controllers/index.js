@@ -8,18 +8,14 @@ const protect = require('src/services/authentication/protect');
  * @return {Array}         Path/router mapping
  */
 module.exports = function IndexController(router) {
-  const application = {
-    year: (new Date()).getFullYear()
-  };
-
   router.get('/', protect, function handleIndex(req, res) {
-    application.loginSuccess = req.flash('success');
-
-    testService.getAvailableTests()
+    return testService
+      .getAvailableTests()
       .then(function sendResult(tests) {
-        console.log(tests);
-        application.tests = tests;
-        res.render('index.html', application);
+        res.render('index.html', {
+          loginSuccess: req.flash('success'),
+          tests: tests
+        });
       })
       .then(null, function evalError(error) {
         console.log(error);

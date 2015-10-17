@@ -3,20 +3,18 @@
 {% block body %}
   <section class="section-wrapper test-wrapper">
     <header>
-      <h2>Nombre del Test</h2>
-      <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic dolores optio ducimus, non molestias quas illum rem nemo error doloribus pariatur quidem repellendus, laboriosam delectus itaque laudantium, tenetur incidunt sint!</p>
+      <h2>{{test.title}}</h2>
+      <p class="description">{{test.description}}</p>
 
       <p class="summary">
-        <strong>Cantidad de preguntas: </strong> ##
+        <strong>Cantidad de preguntas: </strong> #{{test.questions.length}}
         <br>
 
-        <strong>Valor: </strong> ##.##
+        <strong>Valor: </strong> {{test.value}}
         <br>
 
-        <strong>Creado por: </strong> Jonathan Samines
+        <strong>Creado por: </strong> {{test.author.fullName}}
         <br>
-
-        <strong>Valido hasta: </strong> 10/20/2015
       </p>
 
       <p class="disclaimer">

@@ -24,12 +24,14 @@ module.exports = function SessionController(router) {
   });
 
   router.post('/register', function handleRegister(req, res) {
-    return user.registerUser(req.body)
+    return user
+      .registerUser(req.body)
       .then(function registerSuccess() {
         req.flash('registered', {
           type: 'success',
           message: 'Tu usuario se ha registrado correctamente.'
         });
+
         res.redirect('/home');
       })
       .then(null, function handleError(error) {

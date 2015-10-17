@@ -57,6 +57,13 @@ app.use(flash());
 app.use(function attachSessionToLocal(req, res, next) {
   res.locals.session = req.session;
   res.locals.user = req.user;
+  res.locals.application = {
+    year: (new Date()).getFullYear(),
+    name: 'Test Center',
+    course: 'Calculo II',
+    title: 'Cálculo de 3 o más variables'
+  };
+
   next();
 });
 

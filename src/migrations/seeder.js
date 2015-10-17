@@ -81,6 +81,7 @@ module.exports = function seedInitialData() {
 
       return testService.createTest({
         title: 'Test Calculo de 3 variables',
+        description: 'A continuación se le presenta una evaluación teórico práctico sobre el tema "Calculo de 3 o más variables", en el cual se evaluará su conocimiento y dominio del tema a través de una serie de preguntas (multirespuesta)',
         intentsNumber: 1,
         value: 100,
         author: teacher._id,

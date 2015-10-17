@@ -4,7 +4,13 @@ const testService = new TestService();
 
 module.exports = function TestController(router) {
   router.get('/:testId', protect, function handleTestInit(req, res) {
-
+    return testService
+      .getFullTest(req.params.testId)
+      .then(function responseWithTest(test) {
+        res.render('test/index.html', {
+          test: test
+        });
+      });
   });
 
   router.get('/:testId/questions/:questionId', protect, function handleQuestionReqest(req, res) {
