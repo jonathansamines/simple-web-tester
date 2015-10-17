@@ -2,6 +2,7 @@ const gulp = require('gulp');
 const sourcemaps = require('gulp-sourcemaps');
 const sass = require('gulp-sass');
 const browserSync = require('browser-sync').create();
+const seeder = require('src/migrations/seeder');
 
 const targets = {
   sass: {
@@ -35,6 +36,12 @@ gulp.task('server', ['compile-sass'], function syncBrowser() {
 
   gulp.watch(targets.sass.src, ['compile-sass']);
   gulp.watch(targets.views.src).on('change', browserSync.reload);
+});
+
+gulp.task('seed', function seedDb() {
+  require('dotenv').load();
+  require('src/database');
+  seeder();
 });
 
 gulp.task('build', ['compile-sass']);
