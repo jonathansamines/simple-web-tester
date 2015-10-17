@@ -49,12 +49,12 @@ app.use(session({
 }));
 
 passport.use(local);
+passport.serializeUser(serializer.serialize);
+passport.deserializeUser(serializer.deserialize);
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-passport.serializeUser(serializer.serialize);
-passport.deserializeUser(serializer.deserialize);
 require('src/database');
 
 // routes

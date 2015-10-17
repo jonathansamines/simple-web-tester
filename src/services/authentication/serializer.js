@@ -1,4 +1,5 @@
 const UserService = require('src/services/user');
+const service = new UserService();
 
 module.exports = {
 
@@ -17,7 +18,7 @@ module.exports = {
    * @param  {Function} done Completion callback
    */
   deserialize: function deserializeSession(id, done) {
-    return UserService
+    return service
       .getUserById(id)
       .then(function returnUser(user) {
         done(null, user);
