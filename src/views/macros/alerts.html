@@ -1,5 +1,8 @@
 {% macro alertbox(message, type='secondary')%}
   {% if message %}
-    <p class="alert-box {{type}} radius">{{message}}</p>
+    <p class="alert-box {{type}} radius" data-alert>
+      {{message}}
+      <a href="#" class="close">&times;</a>
+    </p>
   {% endif %}
 {% endmacro %}

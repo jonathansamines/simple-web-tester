@@ -14,6 +14,11 @@ tester.components.checker = function initChecker() {
   });
 };
 
+tester.components.foundation = function initFoundation() {
+  $(document).foundation();
+};
+
 tester.init(function ready() {
   tester.components.checker();
+  tester.components.foundation();
 });
