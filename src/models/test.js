@@ -20,7 +20,11 @@ const TestSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  questions: [QuestionSchema]
+  questions: [QuestionSchema],
+  creationDate: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 module.exports = {

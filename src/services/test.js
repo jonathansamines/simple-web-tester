@@ -7,7 +7,7 @@ function TestService() {}
  * @return {Promise} Result of the get all search
  */
 TestService.prototype.getAvailableTests = function getAvailableTests() {
-  return TestModel.find().exec();
+  return TestModel.find().populate('author').exec();
 };
 
 /**
