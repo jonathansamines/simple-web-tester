@@ -5,36 +5,27 @@
   <section class="section-wrapper test-list">
     {{ components.alertbox(loginSuccess[0], 'success') }}
 
-    <h2>My assigned tests</h2>
+    <h2>
+      <small class="label radius secondary">{{tests.length}}</small>
+      Mis pruebas asignadas
+    </h2>
 
-    <article class="test-item clearfix">
-      <h3>Quiz name</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia blanditiis expedita tempora animi, optio at natus consequuntur cupiditate possimus! Ducimus accusamus illum fugiat dicta praesentium, sequi facere delectus dignissimos animi.</p>
+    {% for test in tests %}
+      <article class="test-item clearfix">
+        <h3>{{test.title}}</h3>
+        <p>{{test.description}}</p>
 
-      <span class="test-tags left">
-        <strong>#</strong>
-        <strong class="label secondary round">Jonathan Samines</strong>
-        <strong class="label secondary round">10/20/2014</strong>
-      </span>
+        <span class="test-tags left">
+          <strong>#</strong>
+          <strong class="label secondary round">{{test.author.fullName}}</strong>
+          <strong class="label secondary round">{{test.creationDate}}</strong>
+          <strong class="label info round">{{test.value}}</strong>
+        </span>
 
-      <span class="test-action right">
-        <a href="/test/2" class="button success tiny radius">Start test</a>
-      </span>
-    </article>
-
-    <article class="test-item clearfix">
-      <h3>Quiz name</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia blanditiis expedita tempora animi, optio at natus consequuntur cupiditate possimus! Ducimus accusamus illum fugiat dicta praesentium, sequi facere delectus dignissimos animi.</p>
-
-      <span class="test-tags left">
-        <strong>#</strong>
-        <strong class="label secondary round">Jonathan Samines</strong>
-        <strong class="label secondary round">10/20/2014</strong>
-      </span>
-
-      <span class="test-action right">
-        <a href="/test/2" class="button success tiny radius">Start test</a>
-      </span>
-    </article>
+        <span class="test-action right">
+          <a href="/tests/{{test.id}}" class="button success tiny radius">Iniciar Prueba</a>
+        </span>
+      </article>
+    {% endfor %}
   </section>
 {% endblock %}

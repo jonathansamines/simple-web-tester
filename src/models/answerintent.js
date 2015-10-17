@@ -21,4 +21,7 @@ const AnswerIntentSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('AnswerIntent', AnswerIntentSchema);
+module.exports = {
+  Model: mongoose.model('AnswerIntent', AnswerIntentSchema),
+  Schema: AnswerIntentSchema
+};

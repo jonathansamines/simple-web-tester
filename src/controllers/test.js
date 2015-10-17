@@ -1,6 +1,15 @@
+const TestService = require('src/services/test');
+const testService = new TestService();
+
 module.exports = function TestController(router) {
   router.get('/:testId', function handleTestInit(req, res) {
-    res.render('test/index.html');
+    testService.getAvailableTests()
+      .then(function sendResult(tests) {
+        console.log(tests);
+        res.render('test/index.html', {
+          tests: tests
+        });
+      });
   });
 
   router.get('/:testId/questions/:questionId', function handleQuestionReqest(req, res) {

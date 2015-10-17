@@ -121,4 +121,7 @@ UserSchema.methods.authenticate = function comparePassword(candidatePassword) {
   });
 };
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = {
+  Model: mongoose.model('User', UserSchema),
+  Schema: UserSchema
+};

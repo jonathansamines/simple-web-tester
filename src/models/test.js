@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const QuestionSchema = require('src/models/question').Schema;
 const Schema = mongoose.Schema;
 
 const TestSchema = new Schema({
@@ -8,15 +9,18 @@ const TestSchema = new Schema({
     required: true
   },
   intentsNumber: Number,
-  canRetryQuestions: {
-    type: Boolean,
-    default: false
-  },
-  tags: [String],
   value: {
     type: Number,
     default: 100
-  }
+  },
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  questions: [QuestionSchema]
 });
 
-module.exports = mongoose.model('Test', TestSchema);
+module.exports = {
+  Model: mongoose.model('Test', TestSchema),
+  Schema: TestSchema
+};

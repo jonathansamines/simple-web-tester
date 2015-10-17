@@ -30,4 +30,7 @@ TestIntentSchema.virtual('timeElapsed').get(function computeTime() {
   return moment().from(this.startedDate);
 });
 
-module.exports = mongoose.model('TestIntent', TestIntentSchema);
+module.exports = {
+  Model: mongoose.model('TestIntent', TestIntentSchema),
+  Schema: TestIntentSchema
+};

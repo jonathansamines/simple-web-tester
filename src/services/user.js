@@ -1,4 +1,4 @@
-const UserModel = require('src/models/user');
+const UserModel = require('src/models/user').Model;
 
 function UserService() {}
 

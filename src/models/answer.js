@@ -11,11 +11,10 @@ const AnswerSchema = new Schema({
     type: Boolean,
     default: false
   },
-  help: String,
-  question: {
-    type: Schema.Types.ObjectId,
-    ref: 'Question'
-  }
+  help: String
 });
 
-module.exports = mongoose.model('Answer', AnswerSchema);
+module.exports = {
+  Model: mongoose.model('Answer', AnswerSchema),
+  Schema: AnswerSchema
+};

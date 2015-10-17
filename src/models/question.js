@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const AnswerSchema = require('src/models/answer').Schema;
 const Schema = mongoose.Schema;
 
 const QuestionSchema = new Schema({
@@ -15,10 +16,10 @@ const QuestionSchema = new Schema({
     type: Number,
     default: 0
   },
-  test: {
-    type: Schema.Types.ObjectId,
-    ref: 'Test'
-  }
+  answers: [AnswerSchema]
 });
 
-module.exports = mongoose.model('Question', QuestionSchema);
+module.exports = {
+  Model: mongoose.model('Question', QuestionSchema),
+  Schema: QuestionSchema
+};

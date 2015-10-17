@@ -3,7 +3,10 @@ const Schema = mongoose.Schema;
 
 const RoleSchema = new Schema({
   roleId: Schema.Types.ObjectId,
-  description: String
+  name: String
 });
 
-module.exports = mongoose.model('Role', RoleSchema);
+module.exports = {
+  Model: mongoose.model('Role', RoleSchema),
+  Schema: RoleSchema
+};
