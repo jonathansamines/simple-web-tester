@@ -8,7 +8,7 @@ function UserService() {}
  * @return {Promise}   Promise which will be resolved when the user has retrieved
  */
 UserService.prototype.getUserById = function getUserById(id) {
-  return UserModel.findOne(id).populate('rol').exec();
+  return UserModel.findById(id).populate('rol').exec();
 };
 
 /**
