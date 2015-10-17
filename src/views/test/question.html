@@ -8,7 +8,7 @@
       </h2>
 
       <p class="question-detail">
-        <strong>Question explanation</strong>
+        <strong>Explicación:</strong>
         {{question.description}}
       </p>
 
@@ -31,14 +31,12 @@
     </form>
 
     <nav class="test-question-navigation pagination-centered">
-      <ul class="pagination">
-        <li class="unavailable"><a href="">1</a></li>
-        <li class="unavailable"><a href="">2</a></li>
-        <li class="unavailable"><a href="">3</a></li>
-        <li class="unavailable"><a href="">4</a></li>
-        <li class="current">
-          <a href="/test/:id/question/:id">5</a>
-        </li>
+      <ul class="pagination" data-page="{{questionIndex}}">
+        {% for page in range(1, test.questions.length + 1) %}
+          <li class="{{'current' if (page == (questionIndex + 1)) else 'unavailable' }}">
+            <a href="#">{{page}}</a>
+          </li>
+        {% endfor %}
       </ul>
     </nav>
   </section>
