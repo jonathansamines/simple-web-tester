@@ -39,7 +39,8 @@ module.exports = function TestController(router) {
   });
 
   router.post('/:testId/questions/next', protect, function requestNextQuestion(req, res) {
-    const lastQuestion = req.session.lastQuestion;
+    // go to the next question
+    const lastQuestion = ++req.session.lastQuestion;
 
     if (lastQuestion >= req.session.currentTest.questions.length) {
       return res.redirect(`/tests/${req.params.testId}/result`);
@@ -48,12 +49,10 @@ module.exports = function TestController(router) {
     // test if there is a selected answer
     const selectedAnswer = req.body.selectedAnswer;
     if (selectedAnswer === undefined) {
+      --req.session.lastQuestion;
       req.flash('validation-message', 'Seleccione una respuesta válida.');
       return res.redirect('/tests/${req.params.testId}/questions/next');
     }
-
-    // go to the next question
-    req.session.lastQuestion++;
 
     return res.redirect(`/tests/${req.params.testId}/questions/next`);
   });
