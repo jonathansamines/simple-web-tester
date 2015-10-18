@@ -12,8 +12,7 @@ module.exports = function TestController(router) {
           test: test,
           validation: req.flash('validation')
         });
-      })
-      .then(null, console.log);
+      });
   });
 
   router.post('/:testId', protect, function startTest(req, res) {
@@ -23,9 +22,16 @@ module.exports = function TestController(router) {
       return res.redirect(`/tests/${req.params.testId}`);
     }
 
-    // start test
-    req.session.lastQuestion = 0;
-    res.redirect(`/tests/${req.params.testId}/questions/next`);
+    // create test intent
+    return testService
+      .createTestIntentToTest(req.session.currentTest._id, req.user._id)
+      .then(function redirectToFirstQuestion(testIntent) {
+        req.session.currentTestIntent = testIntent;
+
+        // start test
+        req.session.lastQuestion = 0;
+        res.redirect(`/tests/${req.params.testId}/questions/next`);
+      });
   });
 
   router.get('/:testId/questions/next', protect, function handleQuestionReqest(req, res) {
@@ -41,9 +47,11 @@ module.exports = function TestController(router) {
   router.post('/:testId/questions/next', protect, function requestNextQuestion(req, res) {
     // go to the next question
     const lastQuestion = ++req.session.lastQuestion;
+    const currentTest = req.session.currentTest;
+    const testId = req.params.testId;
 
-    if (lastQuestion >= req.session.currentTest.questions.length) {
-      return res.redirect(`/tests/${req.params.testId}/result`);
+    if (lastQuestion >= currentTest.questions.length) {
+      return res.redirect(`/tests/${testId}/result`);
     }
 
     // test if there is a selected answer
@@ -51,14 +59,34 @@ module.exports = function TestController(router) {
     if (selectedAnswer === undefined) {
       --req.session.lastQuestion;
       req.flash('validation-message', 'Seleccione una respuesta válida.');
-      return res.redirect('/tests/${req.params.testId}/questions/next');
+      return res.redirect(`/tests/${testId}/questions/next`);
     }
 
-    return res.redirect(`/tests/${req.params.testId}/questions/next`);
+    // create answerIntent
+    const testIntent = req.session.currentTestIntent;
+    const currentQuestion = currentTest.questions[lastQuestion - 1];
+    const originalAnswer = currentQuestion.answers.filter( answ => answ._id === selectedAnswer )[0];
+    const isCorrectAnswer = originalAnswer === undefined ? false : originalAnswer.isCorrect;
+
+    return testService
+    .saveTestIntentState(testIntent._id, currentQuestion, {
+      originalAnswer: selectedAnswer,
+      isCorrect: isCorrectAnswer
+    })
+    .then(function nextQuestionOnSaveIntent(updatedIntent) {
+      req.session.currentTestIntent = updatedIntent;
+      return res.redirect(`/tests/${testId}/questions/next`);
+    });
   });
 
   router.get('/:testId/result', protect, function handleTestResult(req, res) {
-    res.render('test/result.html');
+    const testIntent = req.session.currentTestIntent;
+
+    res.render('test/result.html', {
+      testResult: testIntent,
+      correctAnswers: testIntent.answers.filter( answ => answ.isCorrect),
+      wrongAnswers: testIntent.answers.filter( answ => !answ.isCorrect)
+    });
   });
 
   return ['/tests', router];

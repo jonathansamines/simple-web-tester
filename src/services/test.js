@@ -1,4 +1,6 @@
 const TestModel = require('src/models/test').Model;
+const TestIntentModel = require('src/models/testintent').Model;
+require('src/models/answerintent');
 
 function TestService() {}
 
@@ -17,6 +19,44 @@ TestService.prototype.getAvailableTests = function getAvailableTests() {
  */
 TestService.prototype.getFullTest = function getFullTestObject(testId) {
   return TestModel.findById(testId).exec();
+};
+
+/**
+ * Create a testintent for a given user and test
+ * @param  {Number} testId Test identifier
+ * @param  {Number} userId User identifier
+ * @return {Promise}       Promise which contains the result of the operation
+ */
+TestService.prototype.createTestIntentToTest = function createTestIntent(testId, userId) {
+  const model = new TestIntentModel({
+    test: testId,
+    user: userId,
+    score: 0
+  });
+
+  return model.save();
+};
+
+
+/**
+ * Save the last state of current test intent
+ * @param  {Number} testIntentId  Test intent identifier
+ * @param  {Number} questionValue Question to save inner value
+ * @param  {Object} newAnswer     User issued answer
+ * @return {Promise}              Promise which resolves on intent update
+ */
+TestService.prototype.saveTestIntentState = function saveTestIntentState(testIntentId, questionValue, newAnswer) {
+  return TestIntentModel
+    .findById(testIntentId)
+    .populate('answers')
+    .exec()
+    .then(function update(intentReference) {
+      intentReference.score += questionValue;
+      intentReference.answers.push(newAnswer);
+
+      return intentReference.save();
+    })
+    .then(null, console.error);
 };
 
 /**

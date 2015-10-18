@@ -11,13 +11,13 @@ const AnswerIntentSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  testIntent: {
-    type: Schema.Types.ObjectId,
-    ref: 'TestIntent'
-  },
   originalAnswer: {
     type: Schema.Types.ObjectId,
     ref: 'Answer'
+  },
+  testIntent: {
+    type: Schema.Types.ObjectId,
+    ref: 'TestIntent'
   }
 });
 

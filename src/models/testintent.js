@@ -20,7 +20,11 @@ const TestIntentSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  lastSolvedQuestion: {
+  test: {
+    type: Schema.Types.ObjectId,
+    ref: 'Test'
+  },
+  answers: {
     type: Schema.Types.ObjectId,
     ref: 'AnswerIntent'
   }
