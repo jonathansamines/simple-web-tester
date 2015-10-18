@@ -7,10 +7,10 @@
 @import 'foundation/components/top-bar';
 @import 'foundation/components/inline-lists';
 @import 'foundation/components/grid';
+@import 'foundation/components/block-grid';
 @import 'foundation/components/alert-boxes';
 @import 'foundation/components/buttons';
 @import 'foundation/components/clearing';
-@import 'foundation/components/dropdown';
 @import 'foundation/components/forms';
 @import 'foundation/components/labels';
 @import 'foundation/components/pagination';
@@ -43,8 +43,23 @@
   }
 }
 
-html body {
+@mixin nosotros-detail {
+  .nosotros-wrapper {
+    .group {
+      @include grid-row;
 
+      img.logo {
+        @include grid-column($columns: 2);
+      }
+
+      .description {
+        @include grid-column($columns: 10);
+      }
+    }
+  }
+}
+
+html body {
   .application-wrapper {
     background-color: $white;
     padding-top: 15px;
@@ -66,6 +81,7 @@ html body {
 
       @include test-component;
       @include test-list-table;
+      @include nosotros-detail;
     }
   }
 
