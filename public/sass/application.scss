@@ -59,6 +59,31 @@
   }
 }
 
+@mixin formula-utils {
+  .formula-inline {
+    display: inline-block;
+    vertical-align: middle;
+
+    &.small {
+      width: 90px;
+      height: 35px;
+      line-height: 14px;
+    }
+
+    &.large {
+      width: 140px;
+      height: 45px;
+      line-height: 18px;
+    }
+
+    &.medium {
+      width: 110px;
+      line-height: 16px;
+      height: 40px;
+    }
+  }
+}
+
 html body {
   .application-wrapper {
     background-color: $white;
@@ -82,6 +107,7 @@ html body {
       @include test-component;
       @include test-list-table;
       @include nosotros-detail;
+      @include formula-utils;
     }
   }
 

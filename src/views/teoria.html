@@ -1,9 +1,141 @@
 {% extends "templates/layout.html" %}
+{% set image_root = "/public/images/resolutions/" %}
 
 {% block body %}
   <section class="section-wrapper teoria-wrapper">
     <h2>Marco Teórico</h2>
 
-    <div class="content"></div>
+    <section class="content">
+      <h3>Cálculo de 2 o más variables</h3>
+      <h4>Definición Formal test</h4>
+
+      <p>
+        Sea <strong>D</strong> un conjunto de pares ordenados, <strong>(x, y)</strong> de números reales, <strong>2 D U R</strong>.
+        Una función real de dos variables reales es una regla que asigna a cada par ordenado <strong>(x, y)</strong> en <strong>D</strong> un único número real, denotado por  <strong>f (x, y)</strong>.
+        El conjunto <strong>D</strong> es llamado el dominio de la función y el conjunto de todos los valores de la función es el rango de la función.
+      </p>
+
+      <div class="exercise-wrapper">
+        <h5>Ejemplo 1</h5>
+        <img src="{{image_root}}/imagen3.png" class="formula-inline large">
+        <br>
+
+        <ol>
+          <li>Calcular el dominio de F</li>
+          <li>Represéntelo gráficamente</li>
+          <li>Calcule</li>
+        </ol>
+
+        <p>
+          <h5>Solución</h5>
+          <ol>
+            <li>
+              La función está bien definida y es un número real cuando el radicando es mayor o igual a cero, esto es: <img src="{{image_root}}/imagen5.png" class="formula-inline small">
+              Así que el dominio es el conjunto de todas las parejas  (x, y) tales que  <img src="{{image_root}}/imagen6.png" class="formula-inline small">.
+              <br>
+              Más formalmente escribimos:
+
+              <img src="{{image_root}}/imagen7.png" class="formula-inline large">
+            </li>
+            <li>
+              Este conjunto se puede representar en el plano. Es una región del plano limitada por la curva
+               <img src="{{image_root}}/imagen8.png" class="formula-inline small">. Primero se traza la curva <img src="{{image_root}}/imagen9.png" class="formula-inline small">. Reescribiéndola como <img src="{{image_root}}/imagen10.png" class="formula-inline small">
+              identificamos como una parábola abriendo hacia abajo y con vértice en (0,4). Para determinar la región completamente podemos proceder de dos maneras.
+
+              <br>
+              <br>
+              <strong>Primer procedimiento:</strong>
+              <br>
+              Es claro que nuestra región es el conjunto de puntos (x,y) que satisface la desigualdad imagen6  Este conjunto lo podemos ver como la unión de todas las curvas  <img src="{{image_root}}/imagen11.png" class="formula-inline medium">. Entre ellas están  <img src="{{image_root}}/imagen12.png" class="formula-inline large">
+              y todas las intermedias y que están por encima de éstas. Haciendo el gráfico de todas estas curvas podemos visualizar el dominio de la función.
+            </li>
+            <li>
+              <img src="{{image_root}}/imagen1.png">
+              <img src="{{image_root}}/imagen13.png">
+            </li>
+          </ol>
+        </p>
+      </div>
+
+      <div class="exercise-wrapper">
+        <h5>Ejemplo 2</h5>
+        <h6>Definición</h6>
+        <p>
+          Sea <strong>f</strong> una función de dos variables.
+          La gráfica de la función <strong>f</strong> es el conjunto de todos los puntos de la forma <strong>(x, y, z)</strong> donde  <i>z</i>=<strong></strong> y <strong>f (x, y y)</strong> E <i>(x, y)</i> Dom(f).
+        </p>
+
+      </div>
+
+      <div class="exercise-wrapper">
+        <h5>Ejemplo 3</h5>
+        <p>Bosqueje la gráfica de las siguientes funciones.</p>
+
+        <ol>
+          <li>
+            Graficamos la ecuación z=2  x  2y que corresponde a un plano, con intersecciones con los ejes x, y y z en 2,1 y 2 respectivamente.
+          </li>
+
+          <li>
+            Graficamos la ecuación <img src="{{image_root}}/imagen16.png" class="formula-inline small">  ella es la mitad de la esfera <img src="{{image_root}}/imagen17.png" class="formula-inline small">  con coordenada z positiva.
+          </li>
+        </ol>
+      </div>
+    </section>
+  </section>
+
+  <section class="aplicaciones-wrapper">
+    <h4>Aplicaciones</h4>
+
+    <p>
+      Suponga que estamos en la situación de una empresa que elabora dos productos A y B.
+      Podemos considerar la función de costos conjuntos  <strong>C=( q1 q2 )</strong> que representa los costos totales de producir 1q unidades del producto A y 2q unidades del producto B.
+      De manera similar podemos definir la función de ingresos conjuntos q1 q2 y de utilidad conjunta  U q1,q2.
+    </p>
+
+    <p>
+      El siguiente ejemplo ilustra una situación en la que es fácil determinar estas funciones.
+    </p>
+
+    <div class="exercise-wrapper">
+      <h6>Ejemplo 4</h6>
+
+      <p>
+        Una pastelería produce chocolate blanco y chocolate oscuro. El costo de material y mano de obra por producir un kilo del chocolate blanco es <strong>6 UM</strong> y el del oscuro es <strong>5 UM</strong>.
+        Suponga que la empresa tiene costos fijos semanales de 1200UM.
+      </p>
+
+      <ol>
+        <li>
+          Encuentre el costo semanal como función de la cantidad de kilos de chocolates de cada tipo producido a la semana.
+        </li>
+        <li>
+          Suponga que la pastelería vende el kilo de chocolate blanco a <strong>10UM</strong> y el oscuro a <strong>8UM</strong>.
+          Obtenga la función utilidad mensual como función del número de kilos de cada tipo producidas y vendidas a la semana.
+        </li>
+      </ol>
+
+      <div>
+        <h6>Solución</h6>
+
+        <p>
+          <strong>a)</strong>
+
+          El costo de material y manos de obra por producir <strong>q1</strong> kilos de chocolate blanco y <strong>q2</strong> kilos de chocolate oscuro están dado por <strong>6q1</strong> y <strong>5q2</strong> respectivamente.
+          El costo conjunto en este caso esta dado por <strong>C(q1, q2)</strong>.
+          <i>Costo fijo</i> + <i>Costo variable</i> ( , ) 1200 (6 5 ) <strong>C(q1 q2)</strong> =+q1 + q2
+        </p>
+        <p>
+          <strong>b)</strong>
+
+          Primero obtendremos la función de ingreso conjunto. Es claro que <strong>I(q1 , q2)</strong>.
+          Ingreso por la venta de 1q chocolate blanco + Ingreso total por la venta de 2q chocolate oscuro 1 2 10 1 8 2 I(q, q) = q + q .
+        </p>
+
+        <p>
+          Finalmente obtenemos <strong>U(q1, q2)</strong> = ( , ) ( , ) 1 2 1 2 I q q - C q q U(q1 , q2 ) = 10q1  8q2 (1200 6 5 ) - q1 + q2 U(q1, q2) = 4q1  3q2 1200 .
+        </p>
+      </div>
+    </div>
   </section>
 {% endblock %}
