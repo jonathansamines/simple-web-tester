@@ -1,0 +1,9 @@
+{
+  "verbose": true,
+  "watch": [
+    "src/views/**/*.html"
+  ],
+  "ext": [
+    "html"
+  ]
+}

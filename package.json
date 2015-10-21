@@ -8,7 +8,7 @@
     "start": "node index.js",
     "build": "gulp build",
     "seed": "NODE_PATH=./ gulp seed",
-    "server": "NODE_PATH=./ nodemon index.js"
+    "server": "NODE_PATH=./ nodemon"
   },
   "repository": {
     "type": "git",
