@@ -24,10 +24,10 @@ const TestIntentSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Test'
   },
-  answers: {
+  answers: [{
     type: Schema.Types.ObjectId,
     ref: 'AnswerIntent'
-  }
+  }]
 });
 
 TestIntentSchema.virtual('timeElapsed').get(function computeTime() {

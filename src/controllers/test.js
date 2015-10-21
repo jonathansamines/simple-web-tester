@@ -68,8 +68,10 @@ module.exports = function TestController(router) {
     const originalAnswer = currentQuestion.answers.filter( answ => answ._id === selectedAnswer )[0];
     const isCorrectAnswer = originalAnswer === undefined ? false : originalAnswer.isCorrect;
 
+    console.log(testIntent);
+
     return testService
-    .saveTestIntentState(testIntent._id, currentQuestion, {
+    .saveTestIntentState(testIntent._id, currentQuestion.value, {
       originalAnswer: selectedAnswer,
       isCorrect: isCorrectAnswer
     })

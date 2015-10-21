@@ -55,8 +55,7 @@ TestService.prototype.saveTestIntentState = function saveTestIntentState(testInt
       intentReference.answers.push(newAnswer);
 
       return intentReference.save();
-    })
-    .then(null, console.error);
+    });
 };
 
 /**
