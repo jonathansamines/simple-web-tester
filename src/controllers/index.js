@@ -1,6 +1,7 @@
 const TestService = require('src/services/test');
 const testService = new TestService();
 const protect = require('src/services/authentication/protect');
+const signedrequest = require('src/services/authentication/signedrequest');
 
 /**
  * Serves the application entry points
@@ -24,8 +25,8 @@ module.exports = function IndexController(router) {
     res.render('nosotros.html');
   });
 
-  router.get('/foro', function handleForo(req, res) {
-    res.render('foro.html');
+  router.get('/foro', protect, function handleForo(req, res) {
+    res.render('foro.html', signedrequest.signUser(req.user));
   });
 
   router.get('/teoria', function handleTeoria(req, res) {

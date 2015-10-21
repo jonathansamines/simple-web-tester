@@ -1,0 +1,4 @@
+[
+  { "name": "Profesor", "code": "TEACHER" },
+  { "name": "Estudiante", "code": "STUDENT" }
+]

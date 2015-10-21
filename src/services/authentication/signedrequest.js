@@ -13,7 +13,7 @@ module.exports = {
 
   signUser: function signUserRequest(user) {
     const message = this.base64(JSON.stringify({
-      displayName: user.fullname,
+      displayname: user.fullname,
       id: user.username
     }));
     const timestamp = Math.round(Date.now() / 1000);
